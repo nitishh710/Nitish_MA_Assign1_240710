@@ -1,0 +1,28 @@
+//just solved it with recursion but can solve it with dp more accurately and with less time complexity
+#include<stdio.h>
+long long int lucky_value(int l,int r,int n,int k){
+  if(r-l+1<k) return 0;
+  if(r-l+1>=k){
+    if((r-l+1)%2==0){
+      int m=(l+r)/2;
+    return lucky_value(l,m,n,k)+lucky_value(m+1,r,n,k);
+    }
+    else {
+     int m=(l+r)/2;
+     return lucky_value(l,m-1,n,k)+lucky_value(m+1,r,n,k)+m;
+    }
+  }
+}
+
+int main(){
+  int t;
+  scanf("%d",&t);
+//total t cases
+  while(t>0){
+    int n,k;
+    scanf("%d %d",&n,&k);
+    printf("%lld\n",lucky_value(1,n,n,k));
+    t--;
+  }
+  return 0;
+}
