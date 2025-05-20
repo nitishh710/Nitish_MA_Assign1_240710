@@ -1,0 +1,27 @@
+void swap(int *a,int*b){
+    int temp=*a;
+    *a=*b;
+    *b=temp;
+}
+void reverse(int *nums,int l,int h){
+    while(l<h){
+        swap(&nums[l],&nums[h]);l++;h--;
+        }
+    }
+void nextPermutation(int* nums, int numsSize) {
+    int i=numsSize-2;
+    //from right first decreasing pair
+    while (i>=0 && nums[i]>=nums[i+1]) {
+        i--;
+    }
+    if (i >= 0) {// to find first element greater than the shorter element of that pair to swap
+        int j = numsSize - 1;
+        while (nums[j] <= nums[i]) {
+            j--;
+        }
+        swap(&nums[i], &nums[j]);
+    
+    }  // reverse the other element after that i...
+     reverse(nums, i + 1, numsSize - 1);
+    return;
+}
