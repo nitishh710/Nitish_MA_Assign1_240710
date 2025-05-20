@@ -1,0 +1,25 @@
+ // just unable to remove all the duplicate triplets
+// time complexity also reaches upto O(n^3)
+int** threeSum(int* nums, int numsSize, int* returnSize, int** returnColumnSizes) {
+    int** arr = (int**)malloc(1000 * sizeof(int*)); 
+    *returnColumnSizes = (int*)malloc(1000 * sizeof(int));
+    int r_index = 0;
+
+    for (int i = 0; i < numsSize; i++) {
+        for (int j = i + 1; j < numsSize; j++) {
+            for (int k = j + 1; k < numsSize; k++) {
+        if (nums[i] + nums[j] + nums[k] == 0) {//allocate arr for storing triplet
+                    arr[r_index] = (int*)malloc(3 * sizeof(int));
+                    arr[r_index][0] = nums[i];
+                    arr[r_index][1] = nums[j];
+                    arr[r_index][2] = nums[k];
+                    (*returnColumnSizes)[r_index] = 3;
+                    r_index++;
+                }
+            }
+        }
+    }
+
+    *returnSize = r_index;
+    return arr;
+}
